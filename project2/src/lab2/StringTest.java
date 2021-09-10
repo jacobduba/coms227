@@ -3,7 +3,7 @@ package lab2;
 import java.util.Locale;
 import java.util.Random;
 
-public class StringMethod {
+public class StringTest {
     public static void main(String[] args) {
         String message;
 
@@ -26,11 +26,5 @@ public class StringMethod {
         System.out.println(message.toUpperCase());
 
         System.out.println(message.substring(0, 5));
-
-        Random rand = new Random(137);
-        System.out.println(rand.nextInt(6));
-        System.out.println(rand.nextInt(6));
-        System.out.println(rand.nextInt(6));
-        System.out.println(rand.nextInt(6));
     }
 }

@@ -1,0 +1,14 @@
+A newly constructed Balloon should have radius zero.
+A newly constructed Balloon should not be popped.
+After calling blow(5) on a Balloon with maximum radius 10, the radius should be 5.
+After calling blow(5) on a popped Balloon with a maximum radius 10, the radius should be 0.
+After calling blow(10) on a Balloon with a maximum radius 10, the radius should be 10.
+After calling blow(11) on a Balloon with a maximum radius 10, the radius should be 0.
+After calling blow(11) on a Balloon with a maximum radius 10, isPopped() should return true.
+After calling blow(5) on a Balloon with a maximum radius 10, isPopped() should return false.
+After calling blow(5) and blow(6) isPopped() should return true.
+After calling pop() on a Balloon, isPopped() should return true.
+After calling pop() on a Balloon and blow(5), getRadius() should return a radius of 0.
+After calling pop() on a Balloon and blow(5), is popped() should return True.
+Calling deflate() on a Balloon with blow(5) should return a radius of 0.
+Calling deflate() on a Balloon with blow(5) and calling blow(6) should return a radius of 0.

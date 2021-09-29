@@ -41,7 +41,7 @@ public class PiggyBank
     // we can only add coins if not busted
     if (busted == false)
     {
-      coins += newCoins; // this was coins = newCoins; instead?
+      coins += newCoins; // this was coins += newCoins; instead?
     }
     
   }

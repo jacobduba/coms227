@@ -25,20 +25,31 @@ public class Corkball
    */
   public static final int MAX_OUTS = 3;
 
+  // An int representing the current inning.
   private int inning;
+  // A boolean representing if the inning is top or bottom.
   private boolean isTopOfInning;
 
+  // An int representing the ball count for the current batter.
   private int ballCount;
+  // An int representing the called strikes for the current batter.
   private int calledStrikes;
+  // An int representing the called outs for the current team batting.
   private int currentOuts;
 
+  // A boolean representing if a runner is on base 1.
   private boolean base1;
+  // A boolean representing if a runner is on base 2.
   private boolean base2;
+  // A boolean representing if a runner is on base 3.
   private boolean base3;
 
+  // An int representing team 0's score.
   private int team0Score;
+  // An int representing team 1's score.
   private int team1Score;
 
+  // An int representing the maximum number of innings in this game.
   private int numInnings;
 
   /**
@@ -61,15 +72,16 @@ public class Corkball
   }
 
   /**
-   * Method called to indicate a bad pitch at which the batter did not swing. This method adds 1 the the batter's count of balls, possibly resulting in a walk.
+   * Method called to indicate a bad pitch at which the batter did not swing. This method adds 1 the batter's count of balls, possibly resulting in a walk.
    * <p>
    * This method does nothing if the game has ended.
    */
   public void ball() {
     if (!gameEnded()) {
       ballCount++;
-      if (getBallCount() == MAX_BALLS) {
-        hit(15);
+      if (ballCount == MAX_BALLS) {
+        newBatter();
+        shiftRunnersBall();
       }
     }
   }
@@ -147,23 +159,28 @@ public class Corkball
     if (!gameEnded()) {
       newBatter();
       if (distance < 15) {
+        // Strike out
         strike(true);
       } else if (distance < 150) {
-        shiftRunnersBase();
+        // Shift runners one base, set new runner at base1
+        shiftRunnersHit();
         base1 = true;
       } else if (distance < 200) {
-        shiftRunnersBase();
-        shiftRunnersBase();
+        // Shift runners two bases, set new runner at base2
+        shiftRunnersHit();
+        shiftRunnersHit();
         base2 = true;
       } else if (distance < 250) {
-        shiftRunnersBase();
-        shiftRunnersBase();
-        shiftRunnersBase();
+        // Shift runners three bases, set new runner at base3
+        shiftRunnersHit();
+        shiftRunnersHit();
+        shiftRunnersHit();
         base3 = true;
       } else {
-        shiftRunnersBase();
-        shiftRunnersBase();
-        shiftRunnersBase();
+        // Shift runners three bases, just add one to the score because the new runner will not stop at any base.
+        shiftRunnersHit();
+        shiftRunnersHit();
+        shiftRunnersHit();
         increaseScore();
       }
     }
@@ -171,30 +188,54 @@ public class Corkball
 
   /**
    * Moves all players to next base.
-   * @return amount of points scored.
    */
-  private void shiftRunnersBase() {
+  private void shiftRunnersHit() {
+    // If runner on base3, remove runner from base3 and increase score
     if (base3) {
       base3 = false;
       increaseScore();
     }
 
+    // If runner on base 2, remove runner from base 2 and add runner to base 3
     if (base2) {
       base2 = false;
       base3 = true;
     }
 
+    // If runner on base 1, remove runner from base 1 and add runner to base 2
     if (base1) {
       base2 = true;
       base1 = false;
     }
   }
 
-  private void shiftRunnersWalk() {
+  /**
+   * Lets a runner walk to first base.
+   */
+  private void shiftRunnersBall() {
+    // If first base is already taken
+    // Else set first base as taken
+    if (base1) {
+      // And if second base is taken too
+      // Else set second base as taken
+      if (base2) {
+        // And if third base is taken too, score a point
+        // Else set third base as taken
+        if (base3) {
+          increaseScore();
+        } else {
+          base3 = true;
+        }
+      } else {
+        base2 = true;
+      }
+    } else {
+      base1 = true;
+    }
   }
 
   private void increaseScore() {
-    if (isTopOfInning()) {
+    if (isTopOfInning) {
       team0Score++;
     } else {
       team1Score++;
@@ -244,9 +285,10 @@ public class Corkball
         currentOuts++;
         newBatter();
 
-        if (getCurrentOuts() == 3) {
-          // Switch teams
+        // If team reached MAX_OUTS, switch teams
+        if (currentOuts == MAX_OUTS) {
           currentOuts = 0;
+          // Change inning if it's the bottom
           if (!isTopOfInning) {
             inning++;
           }

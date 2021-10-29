@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="speccheck_mini2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/speccheck_mini2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

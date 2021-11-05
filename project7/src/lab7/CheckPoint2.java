@@ -5,7 +5,7 @@ import java.io.File;
 public class CheckPoint2 {
     public static void main(String[] args) {
         System.out.println(countAllFiles(new File(".")));
-        System.out.println(countPatterns(57)); // biggest value possible to solve b/c integers are 32 bit
+        System.out.println(countPatterns(5)); // biggest value possible to solve b/c integers are 32 bit
         System.out.println(Integer.MAX_VALUE);
     }
 

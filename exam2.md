@@ -43,18 +43,6 @@ private static String longestWord(String sentence) {
 ```
 ### C
 ```
-public static stringThings(String hello) {
-    String temp = "";
-    for (int i = 0; i < hello.length(); i++) {
-        if (Character.isAlphabetic(hello.charAt(i)) {
-            temp += hello.charAt(i);
-        } else {
-            temp += '#';
-        }
-    }
-    return temp;
-}
-
 private static String replaceNonAlphabetic(String input) {
     String returnVal = ""';
     for (int ii = 0; i < input.length(); i++) {
@@ -68,13 +56,14 @@ private static String replaceNonAlphabetic(String input) {
     return returnVal;
 }
 ```
-### D X
+### D
 ```
 public static int monthsToDouble(double interest, double balance) {
     double doubled = balance * 2;
     int months = 0;
-    while (doubled < balance) {
+    while (doubled > balance) {
        balance += balance * interest; 
+       months += 12;
     }
     return months;
 }
@@ -83,14 +72,14 @@ public static int monthsToDouble(double interest, double balance) {
 ```
 public static boolean isIncreasingOrder(ArrayList<Integers> ordered) {
     for (int i = 1; i < ordered.size(); i++) {
-        if (ordered.get(i - 1) > ordered.get(i) {
+        if (ordered.get(i - 1) > ordered.get(i)) {
             return false;
         }
     }
     return true;
 }
 ```
-### F X
+### F
 ```
 public static int firstVowel(String st) {
     for (int i = 0; i < st.length(); i++) {
@@ -224,21 +213,9 @@ public static int findPrime(int n) {
     return n;
 }
 ```
-### O X
+### O
 ```
-public static void collapse(int[] arr) {
-    for (int x = 0; x < arr.length; x++) {
-        for (int y = x + 1; y < arr.length; y++) {
-            if (arr[x] == arr[y] && arr[x] > 0) {
-                for (int z = y + 1; z < arr.length; z++) {
-                    arr[z - 1] = arr[z];
-                }
-                arr[arr.length - 1] = 0;
-            }
-        }
-    }
-}
-
+// Efficient
 private static void collapseArray(int[] arr) {\
     int[] temp = new int[arr.length];
     int temp_size;
@@ -264,6 +241,26 @@ private static void collapseArray(int[] arr) {\
 
     for (int i = 0; i < arr.length; i++) {
         arr[i] = temp[i];
+    }
+}
+
+// Easier to write
+public static void collapse(int[] arr) {
+    ArrayList<Integer> temp = new ArrayList<>();
+    for (int num : arr) {
+	if (!temp.contains(num)) {
+	    temp.add(num);
+	}
+    }
+
+    int index = 0;
+    for (int num: temp) {
+	arr[index] = num;
+	index += 1;
+    }
+
+    for (int i = index; i < arr.length; i++) {
+	arr[i] = 0;
     }
 }
 ```
@@ -316,19 +313,6 @@ public static void rebereiufndjafnsjodnsdiofjnsfijnfdzspjfnds(int[] arr) {
 ```
 ## Problem #2 (!!!!!!!!)
 ```
-public class Lmao {
-    public static void main(String[] args) throws FileNotFoundException {
-        Scanner scanIn = new Scanner(System.in);
-        System.out.println("Enter name of input file");
-        String fileName = scanIn.next();
-        Scanner scanFile = new Scanner(new File(fileName + ".java"));
-
-        File outFile = new File(fileName + ".out");
-
-        while (scanFile.hasNextLine()) {
-            
-}
-
 public static void main(String[] args) {
     System.out.println("Enter a filename:");
     Scanner input = new Scanner(System.in);

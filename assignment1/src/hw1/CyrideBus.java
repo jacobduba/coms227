@@ -19,8 +19,9 @@ public class CyrideBus {
     private int totalRiders;
 
     /**
-     * Constructs a new bus with the given maximum capacity that will travel among the given number of stops. Initially
-     * the bus is in service, the current stop is BUS_GARAGE, and there are no passengers on the bus.
+     * Constructs a new bus with the given maximum capacity that will travel 
+	 * among the given number of stops. Initially the bus is in service, the 
+	 * current stop is BUS_GARAGE, and there are no passengers on the bus.
      * @param givenMaxCapacity int of max bus capacity.
      * @param givenNumStops int of bus stops.
      */
@@ -34,8 +35,9 @@ public class CyrideBus {
     }
 
     /**
-     * @return An int representing the current capacity of the bus. This is zero while the bus is out of service, and is
-     * equal to the maximum capacity when in service.
+	 * @return An int representing the current capacity of the bus. This is zero
+	 * while the bus is out of service, and is equal to the maximum capacity
+	 * when in service.
      */
     public int getCurrentCapacity() {
         return currentCapactiy;
@@ -49,32 +51,37 @@ public class CyrideBus {
     }
 
     /**
-     * @return An int representing the current capacity of the bus. This is zero while the bus is out of service, and is
-     * equal to the maximum capacity when in service.
+	 * @return An int representing the current capacity of the bus. This is zero
+	 * while the bus is out of service, and is equal to the maximum capacity
+	 * when in service.
      */
     public int getNumPassengers() {
         return numPassengers;
     }
 
     /**
-     * @return An int representing the total number of passengers who have gotten on this bus since it was constructed.
+	 * @return An int representing the total number of passengers who have
+	 * gotten on this bus since it was constructed.
      */
     public int getTotalRiders() {
         return totalRiders;
     }
 
     /**
-     * @return A boolean representing if this bus is in service, that is, its current capacity is nonzero.
+	 * @return A boolean representing if this bus is in service, that is, its
+	 * current capacity is nonzero.
      */
     public boolean isInService() {
         return inService;
     }
 
     /**
-     * Simulates the bus travelling to its next stop. The stop number is incremented (possibly wrapping around to
-     * zero); The actual number of passengers getting on is added to the ridership total.
-     * @param peopleOff the given number of people getting off, if possible (never going below zero).
-     * @param peopleOn the given number of people getting on, if possible (never going over the current capacity).
+	 * Simulates the bus travelling to its next stop. The stop number is
+	 * incremented (possibly wrapping around to zero); The actual number of
+	 * passengers getting on is added to the ridership total. @param peopleOff
+	 * the given number of people getting off, if possible (never going below
+	 * zero). @param peopleOn the given number of people getting on, if possible
+	 * (never going over the current capacity).
      */
     public void nextStop(int peopleOff, int peopleOn) {
         currentStop = (currentStop + 1) % numStops;
@@ -85,7 +92,8 @@ public class CyrideBus {
     }
 
     /**
-     * Places this bus in service; that is, sets the current capacity to the maximum value.
+	 * Places this bus in service; that is, sets the current capacity to the
+	 * maximum value.
      */
     public void placeInService() {
         inService = true;
@@ -93,8 +101,8 @@ public class CyrideBus {
     }
 
     /**
-     * Takes this bus out of service. The current capacity becomes zero, all passengers get off, and the bus is
-     * teleported to BUS_GARAGE.
+	 * Takes this bus out of service. The current capacity becomes zero, all
+	 * passengers get off, and the bus is teleported to BUS_GARAGE.
      */
     public void removeFromService() {
         inService = false;
